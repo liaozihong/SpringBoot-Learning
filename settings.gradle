@@ -1,0 +1,4 @@
+rootProject.name = 'springboot'
+include(':SpringBoot-RabbitMq')
+include(':SpringBoot-Utils')
+
