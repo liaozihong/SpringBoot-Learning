@@ -1,4 +1,5 @@
 rootProject.name = 'springboot'
 include(':SpringBoot-RabbitMq')
+include(':SpringBoot-Mongodb')
 include(':SpringBoot-Utils')
 
