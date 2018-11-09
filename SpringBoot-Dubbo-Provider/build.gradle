@@ -1,0 +1,15 @@
+dependencies {
+    compile(group: 'com.alibaba', name: 'dubbo', version: '2.5.3') {
+        exclude(module: 'spring')
+        exclude(module: 'slf4j-log4j12')
+        exclude(module: 'slf4j-api')
+    }
+    compile(group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.4.6') {
+        exclude(module: 'slf4j-log4j12')
+//        exclude(module: 'log4j')
+    }
+    compile(group: 'com.github.sgroschupf', name: 'zkclient', version: '0.1') {
+        exclude(module: 'slf4j-log4j12')
+//        exclude(module: 'log4j')
+    }
+}
