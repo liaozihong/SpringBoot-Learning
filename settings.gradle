@@ -1,5 +1,4 @@
 rootProject.name = 'springboot'
-
 include(':SpringBoot-RabbitMq')
 include(':SpringBoot-Mongodb')
 include(':SpringBoot-Dubbo-Provider')
@@ -8,4 +7,7 @@ include(':SpringBoot-Mybatis')
 include(':SpringBoot-Mybatis-Multisource')
 include(':SpringBoot-ActiveMq')
 include(':SpringBoot-Nsq')
+include(':SpringBoot-Zookeeper-Distributed-Lock')
+include(':SpringBoot-Shiro')
+include(':SpringBoot-Memcached')
 include(':SpringBoot-Utils')
