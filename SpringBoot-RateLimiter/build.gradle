@@ -1,0 +1,4 @@
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version: '27.0-jre'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.4.RELEASE'
+}

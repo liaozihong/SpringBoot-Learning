@@ -3,5 +3,4 @@ dependencies {
     compile 'org.apache.zookeeper:zookeeper:3.4.10'
     compile 'org.apache.curator:curator-framework:2.12.0'
     compile 'org.apache.curator:curator-recipes:2.12.0'
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.4'
 }
