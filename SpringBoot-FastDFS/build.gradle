@@ -1,0 +1,5 @@
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:2.0.4.RELEASE'
+    //此包需要自己编译，https://github.com/happyfish100/fastdfs-client-java
+    compile 'org.csource:fastdfs-client-java:1.27-SNAPSHOT'
+}
