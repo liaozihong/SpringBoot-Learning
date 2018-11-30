@@ -1,0 +1,15 @@
+
+spring:
+#  data:
+#    elasticsearch:
+#        cluster-name: docker-cluster
+#                #cluster-name: #默认为elasticsearch
+#        cluster-nodes: 120.79.58.138:9300 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode（9200端口是http查询使用的。9300集群使用。.）
+#        properties:
+#          path:
+#            logs: /elasticsearch/log #elasticsearch日志存储目录
+#            data: /elasticsearch/data #elasticsearch数据存储目录
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+server:
+  port: 8081

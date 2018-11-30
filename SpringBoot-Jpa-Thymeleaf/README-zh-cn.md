@@ -166,4 +166,4 @@ public class UserController {
 ```
 
 项目源码：    
-https://github.com/liaozihong/SpringBoot-Learning/tree/master/SpringBoot-Thymeleaf  
+https://github.com/liaozihong/SpringBoot-Learning/tree/master/SpringBoot-Jpa-Thymeleaf  
