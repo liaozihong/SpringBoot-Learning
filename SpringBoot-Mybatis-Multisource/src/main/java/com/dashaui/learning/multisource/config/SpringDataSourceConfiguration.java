@@ -12,6 +12,15 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.sql.DataSource;
 
+/**
+ * Spring data source configuration
+ * <p/>
+ * Created in 2018.12.03
+ * <p/>
+ * 注意basePackages 指定扫描Mapper的包路径，sqlSessionFactoryRef 指定sql session工厂，跟下面的方法名相等
+ *
+ * @author Liaozihong
+ */
 @Configuration
 @MapperScan(basePackages = {"com.dashaui.learning.multisource.mapper.spring"}, sqlSessionFactoryRef = "springSqlSessionFactory")
 public class SpringDataSourceConfiguration {
@@ -28,7 +37,7 @@ public class SpringDataSourceConfiguration {
     DataSource springDataSource;
 
     /**
-     * Open plat form sql session template sql session template.
+     * 配置Sql Session模板
      *
      * @return the sql session template
      * @throws Exception the exception
@@ -39,7 +48,7 @@ public class SpringDataSourceConfiguration {
     }
 
     /**
-     * Open plat form sql session factory sql session factory.
+     * 配置SQL Session工厂
      *
      * @return the sql session factory
      * @throws Exception the exception
@@ -48,6 +57,7 @@ public class SpringDataSourceConfiguration {
     public SqlSessionFactory springSqlSessionFactory() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(springDataSource);
+        //指定XML文件路径
         factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_XML_LOCATION));
         return factoryBean.getObject();
     }

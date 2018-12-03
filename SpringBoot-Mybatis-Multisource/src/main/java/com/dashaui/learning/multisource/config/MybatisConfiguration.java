@@ -13,6 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * Mybatis configuration
+ * <p/>
+ * Created in 2018.12.03
+ * <p/>
+ *
+ * @author Liaozihong
+ */
 @Configuration
 public class MybatisConfiguration {
     /**
@@ -24,13 +32,16 @@ public class MybatisConfiguration {
      */
     final static String TEST_PREFIX = "spring.datasource.test";
 
+    /**
+     * The constant logger.
+     */
     final static Logger logger = LoggerFactory.getLogger(MybatisConfiguration.class);
 
     /**
      * 配置druid显示监控统计信息
      * 开启Druid的监控平台 http://localhost:8080/druid
      *
-     * @return
+     * @return servlet registration bean
      */
     @Bean
     public ServletRegistrationBean druidServlet() {
@@ -51,7 +62,7 @@ public class MybatisConfiguration {
     /**
      * 注册一个filterRegistrationBean
      *
-     * @return
+     * @return filter registration bean
      */
     @Bean
     public FilterRegistrationBean filterRegistrationBean() {
@@ -63,12 +74,22 @@ public class MybatisConfiguration {
         return filterRegistrationBean;
     }
 
+    /**
+     * 配置Spring数据库的数据源
+     *
+     * @return the data source
+     */
     @Bean(name = "SpringDataSource")
     @ConfigurationProperties(prefix = SPRING_PREFIX)  // application.properties中对应属性的前缀
     public DataSource springDataSource() {
         return new DruidDataSource();
     }
 
+    /**
+     * 配置Test数据库的数据源
+     *
+     * @return the data source
+     */
     @Bean(name = "TestDataSource")
     @ConfigurationProperties(prefix = TEST_PREFIX)  // application.properties中对应属性的前缀
     public DataSource testDataSource() {

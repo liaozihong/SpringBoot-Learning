@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * <p/>
  * Created in 2018.11.09
  * <p/>
- * 此例子只是简单的配置mybatis，后面会配置一个双数据源的
+ * mybatis 双数据源测试
  *
  * @author Liaozihong
  */
