@@ -1,4 +1,5 @@
 dependencies {
+    compile project(':SpringBoot-Utils')
     compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.2'
     compile 'org.aspectj:aspectjweaver:1.7.2'
     compile group: 'com.google.guava', name: 'guava', version: '27.0-jre'

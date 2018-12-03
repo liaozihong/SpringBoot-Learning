@@ -1,4 +1,5 @@
 dependencies {
+    compile project(':SpringBoot-Utils')
     compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
     compile group: 'org.springframework.data', name: 'spring-data-redis', version: '2.0.4.RELEASE'
 //    compile 'org.redisson:redisson:3.9.1'
