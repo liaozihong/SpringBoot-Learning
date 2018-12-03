@@ -41,15 +41,14 @@ public class DistributedLockByZookeeper {
 
     /**
      * 获取分布式锁
-     *
+     * 创建一个临时节点，
      * @param path the path
      */
     public void acquireDistributedLock(String path) {
         String keyPath = "/" + ROOT_PATH_LOCK + "/" + path;
         while (true) {
             try {
-                curatorFramework
-                        .create()
+                curatorFramework.create()
                         .creatingParentsIfNeeded()
                         .withMode(CreateMode.EPHEMERAL)
                         .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE)
@@ -76,7 +75,7 @@ public class DistributedLockByZookeeper {
     /**
      * 释放分布式锁
      *
-     * @param path the path
+     * @param path the  节点路径
      * @return the boolean
      */
     public boolean releaseDistributedLock(String path) {
@@ -95,7 +94,7 @@ public class DistributedLockByZookeeper {
     /**
      * 创建 watcher 事件
      */
-    private void addWatcher(String path) throws Exception {
+    private void addWatcher(String path) {
         String keyPath;
         if (path.equals(ROOT_PATH_LOCK)) {
             keyPath = "/" + path;
