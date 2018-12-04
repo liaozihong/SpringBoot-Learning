@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基于WebSocket 简易聊天室</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<form class="form-horizontal col-sm-8" role="form">
+    <h2 class="center">聊&nbsp;&nbsp;天&nbsp;&nbsp;室&nbsp;</h2>
+    <div class="form-group">
+        <label for="message_content" class="col-sm-1 control-label">消息列表</label>
+        <div class="col-sm-4">
+    <textarea id="message_content" class="form-control" readonly="readonly"
+              cols="57" rows="10">
+</textarea>
+        </div>
+        <label for="user-list" class="col-sm-1 control-label">用户列表</label>
+        <div class="col-sm-2">
+    <textarea id="user-list" readonly="readonly" class="form-control"
+              cols="8" rows="10"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="in_user_name" class="col-sm-2 control-label">用户姓名 &nbsp;</label>
+        <div class="col-sm-8">
+            <input id="in_user_name" class="form-control" value=""/>
+        </div>
+        <button type="button" id="btn_join" class="btn btn-default">加入聊天室</button>
+        <button type="button" id="btn_exit" class="btn btn-danger">离开聊天室</button>
+    </div>
+
+    <div class="form-group">
+        <label for="in_room_msg" class="col-sm-2 control-label">群发消息 &nbsp;</label>
+        <div class="col-sm-8">
+            <input id="in_room_msg" class="form-control" value=""/>
+        </div>
+        <button type="button" id="btn_send_all" class="btn btn-default">发送消息</button>
+    </div>
+
+    <br/><br/><br/>
+
+    <h3 class="center">好友聊天</h3>
+    <br/>
+    <div class="form-group">
+        <label for="in_sender" class="col-sm-2 control-label">发送者 &nbsp;</label>
+        <div class="col-sm-8">
+            <input id="in_sender" class="form-control" value=""/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="in_receive" class="col-sm-2 control-label">接受者 &nbsp;</label>
+        <div class="col-sm-8">
+            <input id="in_receive" class="form-control" value=""/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="in_point_message" class="col-sm-2 control-label">发送消息 &nbsp;</label>
+        <div class="col-sm-8">
+            <input id="in_point_message" class="form-control" value=""/>
+        </div>
+        <button type="button" class="btn btn-default" id="btn_send_point">发送消息</button>
+    </div>
+
+</form>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var urlPrefix = 'ws://localhost:8080/chat-room/';
+        var ws = null;
+        $('#btn_join').click(function () {
+            var username = $('#in_user_name').val();
+            var url = urlPrefix + username;
+            ws = new WebSocket(url);
+            ws.onopen = function () {
+                console.log("建立 websocket 连接...");
+            };
+            ws.onmessage = function (event) {
+                var data = JSON.parse(event.data);
+                console.info(data);
+                if (data.msg === "message") {
+                    //服务端发送的消息
+                    $('#message_content').append(data.result + '\n');
+                } else if (data.msg === "username") {
+                    var result = '';
+                    $.each(data.result, function (index, value) {
+                        result += value + '\n';
+                    })
+                    $('#user-list').text(result);
+                }
+            };
+            ws.onclose = function () {
+                $('#message_content').append('用户[' + username + '] 已经离开聊天室!');
+                console.log("关闭 websocket 连接...");
+            }
+        });
+        //客户端发送消息到服务器
+        $('#btn_send_all').click(function () {
+            var msg = $('#in_room_msg').val();
+            if (ws) {
+                ws.send(msg);
+            }
+        });
+        // 退出聊天室
+        $('#btn_exit').click(function () {
+            if (ws) {
+                ws.close();
+            }
+        });
+
+        $("#btn_send_point").click(function () {
+            var sender = $("#in_sender").val();
+            var receive = $("#in_receive").val();
+            var message = $("#in_point_message").val();
+            $.get("/chat-room/" + sender + "/to/" + receive + "?message=" + message, function () {
+                console.info("发送成功!" + sender + "向" + receive + "发送了" + message);
+            })
+        })
+    })
+</script>
+</html>

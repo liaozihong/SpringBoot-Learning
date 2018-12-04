@@ -1,0 +1,5 @@
+dependencies {
+	compile project(':SpringBoot-Utils')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.0.4.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf:2.0.4.RELEASE'
+}

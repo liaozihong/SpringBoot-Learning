@@ -1,5 +1,5 @@
-rootProject.name = 'springboot'
 include(':SpringBoot-RabbitMq')
+rootProject.name = 'springboot'
 include(':SpringBoot-Mongodb')
 include(':SpringBoot-Dubbo-Provider')
 include(':SpringBoot-Dubbo-Consumer')
@@ -15,5 +15,7 @@ include(':SpringBoot-RateLimiter')
 include(':SpringBoot-FastDFS')
 include(':SpringBoot-Elasticsearch')
 include(':SpringBoot-Redis-Distributed-Lock')
-include(':SpringBoot-WebFlux')
+include(':SpringBoot-WebSocket')
 include(':SpringBoot-Utils')
+// spring-boot-starter-webflux模块与web冲突
+//include(':SpringBoot-WebFlux')
