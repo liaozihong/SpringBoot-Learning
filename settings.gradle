@@ -16,6 +16,7 @@ include(':SpringBoot-FastDFS')
 include(':SpringBoot-Elasticsearch')
 include(':SpringBoot-Redis-Distributed-Lock')
 include(':SpringBoot-WebSocket')
+include(':SpringBoot-Email')
 include(':SpringBoot-Utils')
 // spring-boot-starter-webflux模块与web冲突
 //include(':SpringBoot-WebFlux')
