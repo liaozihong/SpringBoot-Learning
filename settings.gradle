@@ -1,5 +1,5 @@
-include(':SpringBoot-RabbitMq')
 rootProject.name = 'springboot'
+include(':SpringBoot-RabbitMq')
 include(':SpringBoot-Mongodb')
 include(':SpringBoot-Dubbo-Provider')
 include(':SpringBoot-Dubbo-Consumer')
@@ -19,5 +19,6 @@ include(':SpringBoot-WebSocket')
 include(':SpringBoot-Email')
 include(':SpringBoot-Redis-Distributed-Redlock')
 include(':SpringBoot-Utils')
-// spring-boot-starter-webflux模块与web冲突
-//include(':SpringBoot-WebFlux')
+// spring-boot-starter-webflux模块与web冲突，如果web模块的类不能用，请注释下面的模块
+include(':SpringBoot-WebFlux')
+include(':SpringBoot-WebFlux-Data-Mongodb')
