@@ -40,6 +40,7 @@ spring data elasticsearch |	elasticsearch
 compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch', version: '2.0.6.RELEASE'
 compile 'org.elasticsearch.client:x-pack-transport:5.5.0'
 ```
+#### 配置连接elasticsearch
 由于使用了X-PACK插件，需要做密码验证。  
 
 所以需要引入x-pack-transport包。  
@@ -57,6 +58,24 @@ compile 'org.elasticsearch.client:x-pack-transport:5.5.0'
     }
 ```
 使用上面的Bean注入，便可通过验证，连接到elasticsearch。  
+若无配置X-PACK,可直接配置yml或properties：  
+```
+# ES
+spring:
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+      cluster-name: elasticsearch
+      cluster-nodes: 120.132.29.37:9300
+```
+默认 9300 是 Java 客户端的端口。9200 是支持 Restful HTTP 的接口。
+更多配置：  
+
+    - spring.data.elasticsearch.cluster-name Elasticsearch 集群名。(默认值: elasticsearch)
+    - spring.data.elasticsearch.cluster-nodes 集群节点地址列表，用逗号分隔。如果没有指定，就启动一个客户端节点。
+    - spring.data.elasticsearch.propertie 用来配置客户端的额外属性。
+    - spring.data.elasticsearch.repositories.enabled 开启 Elasticsearch 仓库。(默认值:true。)
 
 部分注解介绍：  
 #### @Document
@@ -105,9 +124,202 @@ public @interface Field {
     boolean includeInParent() default false;
 }
 ```
+#### CURD 操作
+同样，类似于jpa，Spring提供了ElasticsearchRepository<T, ID>类，基本的curd都帮我们提供了，我们如果有特别需要只需根据规范命名即可自行扩展，感叹Spring的强大。  
+定义自己的Dao  
+```
+public interface UserSearchRepository extends ElasticsearchRepository<User, Integer> {
+
+    /**
+     * Find by name list.
+     *
+     * @param name the name
+     * @return the list
+     */
+    List<User> findByName(String name);
+
+    /**
+     * 使用 Page<User> users = userSearchRepository.findByName("测试",  PageRequest.of(0, 10)); //分页是从0开始的
+     *
+     * @param name     the name
+     * @param pageable the pageable
+     * @return the page
+     */
+    Page<User> findByName(String name, Pageable pageable);
+
+    /**
+     * Find product by id user.
+     *
+     * @param name the name
+     * @return the user
+     */
+    User findProductById(String name);
+}
+```
+model 类定义
+```java
+@Document(indexName = "springboot-curd", type = "user")
+public class User {
+    @Id
+    private Integer id;
+
+    @Field(searchAnalyzer = "ik_max_word", analyzer = "ik_smart", type = FieldType.Keyword)
+    private String name;
+
+    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "date_optional_time")
+    private Date date;
+    
+    /* get set */
+```
+这里的注解概念可基本对应关系型数据库
+
+    indexNmae –> DB   
+    type –> Table   
+    @Field –> row
+
+Service 实现
+```java
+@Service
+public class UserSearchServiceImpl implements UserSearchService {
+    /**
+     * The User search repository.
+     */
+    @Autowired
+    UserSearchRepository userSearchRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(UserSearchServiceImpl.class);
+
+    @Override
+    public List<User> getUserAll() {
+        List<User> userList = new ArrayList<>();
+        Iterable<User> userIterable = userSearchRepository.findAll();
+        userIterable.forEach(userList::add);
+        return userList;
+    }
+
+    @Override
+    public List<User> getUserLimit(int pageNum, int size) {
+        Page<User> userPage = userSearchRepository.findAll(PageRequest.of(pageNum, size));
+        return userPage.getContent();
+    }
+
+    @Override
+    public List<User> getUserByName(String name, int pageNum, int size) {
+        Page<User> userPage = userSearchRepository.findByName(name, PageRequest.of(pageNum, size));
+        return userPage.getContent();
+    }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        return userSearchRepository.findByName(name);
+    }
+
+    @Override
+    public Boolean insertUser(User user) {
+        try {
+            userSearchRepository.save(user);
+        } catch (Exception e) {
+            logger.warn("添加失败!param:{}", JSONParseUtils.object2JsonString(user), e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean updateUser(User user) {
+        try {
+            userSearchRepository.save(user);
+        } catch (Exception e) {
+            logger.warn("修改失败!param:{}", JSONParseUtils.object2JsonString(user), e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean dropUser(Integer id) {
+        try {
+            userSearchRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.warn("删除失败!param:{}", id, e);
+            return false;
+        }
+        return true;
+    }
+}
+```
+提供API访问  
+```java
+@RestController
+@Api(value = "SpringBoot集成ElasticSearch测试接口", tags = "UserOperationApi")
+public class UserOperationApi {
+
+    @Autowired
+    private UserSearchService userSearchService;
+
+    @GetMapping("/getAll")
+    @ApiOperation(value = "查询全部User信息", notes = "获取全部User信息", response = ApiResult.class)
+    public ApiResult getAll() {
+        return ApiResult.prepare().success(userSearchService.getUserAll());
+    }
+
+    @GetMapping("/getUserByName")
+    @ApiOperation(value = "根据用户名查询User信息", notes = "根据用户名查询User信息", response = ApiResult.class)
+    @ApiImplicitParam(name = "name", value = "用户名", required = true, dataType = "String", paramType = "query")
+    public ApiResult getUserByName(String name) {
+        return ApiResult.prepare().success(userSearchService.getUserByName(name));
+    }
+
+    @GetMapping("/getLimitUser")
+    @ApiOperation(value = "根据用户名查询User信息", notes = "根据用户名查询User信息", response = ApiResult.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "页数", dataType = "String"),
+            @ApiImplicitParam(name = "size", value = "条数", dataType = "String")
+    })
+    public ApiResult getLimitUser(@RequestParam(defaultValue = "0", required = false) String page,
+                                  @RequestParam(defaultValue = "5", required = false) String size) {
+        return ApiResult.prepare().success(userSearchService.getUserLimit(
+                Integer.parseInt(page), Integer.parseInt(size)));
+    }
+
+    @PostMapping("/saveUser")
+    @ApiOperation(value = "添加User信息", response = ApiResult.class)
+    @ApiImplicitParam(name = "user", value = "用户信息", required = true, dataType = "User")
+    public ApiResult saveUser(@RequestBody User user) {
+        Boolean isSuccess = userSearchService.insertUser(user);
+        if (isSuccess) {
+            return ApiResult.prepare().success("添加成功!");
+        }
+        return ApiResult.prepare().error(JSONParseUtils.object2JsonString(user), 500, "添加失败!");
+    }
+
+    @PostMapping("/updateUser")
+    @ApiOperation(value = "修改User信息", response = ApiResult.class)
+    @ApiImplicitParam(name = "user", value = "用户信息", required = true, dataType = "User")
+    public ApiResult updateUser(@RequestBody User user) {
+        Boolean isSuccess = userSearchService.updateUser(user);
+        if (isSuccess) {
+            return ApiResult.prepare().success("修改成功!");
+        }
+        return ApiResult.prepare().error(JSONParseUtils.object2JsonString(user), 500, "添加失败!");
+    }
+
+    @GetMapping("/deleteUser")
+    @ApiOperation(value = "刪除User信息", response = ApiResult.class)
+    @ApiImplicitParam(name = "id", value = "用户Id", required = true, dataType = "Integer")
+    public ApiResult updateUser(Integer id) {
+        Boolean isSuccess = userSearchService.dropUser(id);
+        if (isSuccess) {
+            return ApiResult.prepare().success("删除成功!");
+        }
+        return ApiResult.prepare().error(null, 500, "删除失败!");
+    }
+}
+```
+
 集成Demo可查看源码，地址：  
 https://github.com/liaozihong/SpringBoot-Learning/tree/master/SpringBoot-Elasticsearch  
 
 参考链接：  
 https://github.com/spring-projects/spring-data-elasticsearch   
-https://segmentfault.com/a/1190000015568618#911
+https://segmentfault.com/a/1190000015568618#911   
