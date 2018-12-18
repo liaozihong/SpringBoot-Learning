@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户添加</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<h3>用户添加界面</h3>
+<form action="/userInfo/registerUser" method="post">
+    <input type="text" name="username"><br>
+    <input type="text" name="password"/><br>
+    级别：<select name="name">
+    <option th:value="管理员">管理员</option>
+    <option th:value="VIP">VIP</option>
+    <option th:value="游客">游客</option>
+</select><br>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

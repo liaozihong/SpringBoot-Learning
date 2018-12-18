@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+错误信息：<h4 th:text="${msg}"></h4>
+<form action="" method="post">
+    <p>账号：<input type="text" name="username" value="admin"/></p>
+    <p>密码：<input type="text" name="password" value="123456"/></p>
+    <p>验证码：<input style="width: 60px" name="authCode" type="text">
+        <img alt="验证码" th:src="@{/getGifCode}" onclick="random(this)"></p>
+    <p><input type="checkbox" name="rememberMe"/>记住我</p>
+    <p><input type="submit" value="登录"/></p>
+    <p>
+        <button type="button" class="ajaxLogin">测试异步登录</button>
+    </p>
+    <p>
+        <button type="button" class="testVisit">测试异步访问</button>
+    </p>
+</form>
+</body>
+<script th:inline="javascript">
+    function random(tmp) {
+        tmp.src = "/getGifCode?v=" + Math.random();
+    }
+
+    $(document).ready(function () {
+        //测试异步登陆
+        $(".ajaxLogin").click(function () {
+            $.post("/ajaxLogin", {
+                    username: $("input[name='username']").val(),
+                    password: $("input[name='password']").val(),
+                    authCode: $("input[name='authCode']").val(),
+                    rememberMe:
+                        true
+                },
+                function (data, status) {
+                    alert("数据: \n" + data + "\n状态: " + status);
+                }
+            );
+        });
+        //测试异步访问接口
+        $(".testVisit").click(function () {
+            $.get("/userInfo/ajaxVisit", function (data, success) {
+                var result = JSON.stringify(data);
+                alert("数据: \n" + result + "\n状态: " + status);
+            })
+        });
+    });
+</script>
+</html>

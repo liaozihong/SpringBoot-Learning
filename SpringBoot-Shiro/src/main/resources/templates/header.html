@@ -1,0 +1,3 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" th:fragment="header">
+    欢迎您,<span shiro:principal property="username"></span>!<a href="/logout">注销</a>
+</div>

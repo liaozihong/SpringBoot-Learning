@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<h3>当前用户显示页面</h3>
+
+<table cellspacing="0" border="1">
+    <tr>
+        <th>用户</th>
+        <th>角色</th>
+        <th>登录时间</th>
+    </tr>
+    <tr th:each="user,iterStat:${userList}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastLoginTime}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
