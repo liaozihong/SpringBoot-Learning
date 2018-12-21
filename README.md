@@ -18,7 +18,12 @@ gradle clean build -x test
 集成Dubbo的服务消费者。
 
 ### SpringBoot-Elasticsearch
-集成Elasticsearch实现Crud、分页例子。  
+集成Elasticsearch实现增删改查、分页例子。  
+[SpringBoot集成Elasticsearch实现增删改查](https://blog.csdn.net/qq_39211866/article/details/84980416)
+
+### SpringBoot-Elasticsearch-Query
+集成Elasticsearch实现中文、拼音分词，以及繁简体过滤，实现可以使用中文、拼音、繁体搜索，并且提供众多搜索类型，如：高亮、聚合。并且提供查看分词结果接口。  
+[SpringBoot集成Elasticsearch 进阶，实现 中文、拼音、繁简体转换 搜索](https://blog.csdn.net/qq_39211866/article/details/85178707)
 
 ### SpringBoot-Email
 集成Email发送各种类型的邮件。  
@@ -77,6 +82,18 @@ gradle clean build -x test
 ### SpringBoot-Zookeeper-Distributed-Lock
 使用Zookeeper实现分布式锁。  
 [Zookeeper分布式锁](https://blog.csdn.net/qq_39211866/article/details/84844005)
+
+### SpringBoot-Shiro
+使用Shiro实现  
+```
+添加用户注册，用户注销，当前用户显示;  
+添加动态验证码验证，记住密码功能;
+添加用户权限获取添加Redis缓存管理器，避免每次验证都查询数据库;
+添加用户登录错误次数记录，到达特定次数将暂时停用改账号，避免暴力破解，基于redis;
+添加单点登录，限定同一时间只能在一处登录，并踢出前一个登录;
+添加异步单点登录，同上一条相似;
+添加当前在线人数显示，可自己造轮子，做在线人数踢出功能，思路已给出。
+```
 
 ### SpringBoot-Utils
 各项目的依赖模块，存放一些工具类
