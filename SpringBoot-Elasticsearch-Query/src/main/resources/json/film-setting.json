@@ -1,0 +1,43 @@
+{
+  "index": {
+    "analysis": {
+      "filter": {
+        "edge_ngram_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 50
+        },
+        "pinyin_simple_filter": {
+          "type": "pinyin",
+          "first_letter": "prefix",
+          "padding_char": " ",
+          "limit_first_letter_length": 50,
+          "lowercase": true
+        }
+      },
+      "char_filter": {
+        "tsconvert": {
+          "type": "stconvert",
+          "convert_type": "t2s"
+        }
+      },
+      "analyzer": {
+        "ikSearchAnalyzer": {
+          "type": "custom",
+          "tokenizer": "ik_max_word",
+          "char_filter": [
+            "tsconvert"
+          ]
+        },
+        "pinyinSimpleIndexAnalyzer": {
+          "tokenizer": "keyword",
+          "filter": [
+            "pinyin_simple_filter",
+            "edge_ngram_filter",
+            "lowercase"
+          ]
+        }
+      }
+    }
+  }
+}

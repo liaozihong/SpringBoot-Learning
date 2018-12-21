@@ -1,0 +1,48 @@
+{
+  "film": {
+    "_all": {
+      "enabled": true
+    },
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "ikSearchAnalyzer",
+        "search_analyzer": "ikSearchAnalyzer",
+        "fields": {
+          "pinyin": {
+            "type": "text",
+            "analyzer": "pinyinSimpleIndexAnalyzer",
+            "search_analyzer": "pinyinSimpleIndexAnalyzer"
+          }
+        }
+      },
+      "nameOri": {
+        "type": "text"
+      },
+      "publishDate": {
+        "type": "text"
+      },
+      "type": {
+        "type": "text"
+      },
+      "language": {
+        "type": "text"
+      },
+      "fileDuration": {
+        "type": "text"
+      },
+      "director": {
+        "type": "text",
+        "index": "true",
+        "analyzer": "ikSearchAnalyzer"
+      },
+      "created": {
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+      }
+    }
+  }
+}
