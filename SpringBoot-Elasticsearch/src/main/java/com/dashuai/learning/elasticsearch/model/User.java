@@ -1,11 +1,11 @@
 package com.dashuai.learning.elasticsearch.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -18,14 +18,14 @@ import java.util.Date;
  * @author Liaozihong
  */
 @Document(indexName = "springboot-curd", type = "user")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 2084886055991558779L;
     @Id
     private Integer id;
 
-    @Field(searchAnalyzer = "ik_max_word", analyzer = "ik_smart", type = FieldType.Keyword)
+    @Field(type = FieldType.Text, analyzer = "ik_smart", searchAnalyzer = "ik_max_word")
     private String name;
-
-    @Field(type = FieldType.Date, format = DateFormat.custom, pattern = "date_optional_time")
     private Date date;
 
     public Date getDate() {
