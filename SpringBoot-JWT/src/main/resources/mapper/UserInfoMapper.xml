@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dashuai.learning.jwt.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dashuai.learning.jwt.model.UserInfo">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+  </resultMap>
+  <resultMap id="UserAndRoleResultMap" type="com.dashuai.learning.jwt.model.UserInfo" extends="BaseResultMap">
+     <collection property="roleList" ofType="com.dashuai.learning.jwt.model.Role">
+       <id column="id" jdbcType="INTEGER" property="id" />
+       <result column="available" jdbcType="BIT" property="available" />
+       <result column="description" jdbcType="VARCHAR" property="description" />
+       <result column="role" jdbcType="VARCHAR" property="role" />
+     </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, username, password, salt, state, name, last_login_time
+  </sql>
+  <select id="selectUserOfRole" resultMap="UserAndRoleResultMap">
+    select u.*,r.* from user_info u,sys_role r,sys_user_role ur where
+    ur.uid=#{uid} and u.uid=ur.uid  and r.id=ur.role_id
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByNameAndPassword" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where username = #{username,jdbcType=VARCHAR} and password=#{password}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    
+    delete from user_info
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dashuai.learning.jwt.model.UserInfo">
+    insert into user_info (uid, username, password,
+      salt, state, name,
+      last_login_time)
+    values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{salt,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR},
+      #{lastLoginTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dashuai.learning.jwt.model.UserInfo" keyProperty="uid" useGeneratedKeys="true">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="salt != null">
+        salt,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dashuai.learning.jwt.model.UserInfo">
+    
+    update user_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null">
+        salt = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dashuai.learning.jwt.model.UserInfo">
+    
+    update user_info
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      username = #{username,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
