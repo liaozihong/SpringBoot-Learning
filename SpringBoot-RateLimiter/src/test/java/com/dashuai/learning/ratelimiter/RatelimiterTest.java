@@ -47,7 +47,7 @@ public class RatelimiterTest {
             business.start();
         }
         countDownLatch.countDown();
-        //等待结果处理,有只设了10个令牌，所以，只有10个请求有效。
+        //等待结果处理,有只设了5个令牌，所以，只有10个请求有效。
         TimeUnit.SECONDS.sleep(10);
         System.out.println("所有模拟请求结束  at " + new Date());
     }
@@ -63,7 +63,7 @@ public class RatelimiterTest {
         public void run() {
             try {
                 countDownLatch.await();
-                if (rateLimiterService.tryAcquire()) {
+                if (rateLimiterService.rateLimiter().tryAcquire()) {
                     //模拟业务
                     TimeUnit.SECONDS.sleep(3);
                     System.out.println("成功处理业务" + new Date());

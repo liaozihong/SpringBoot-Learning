@@ -33,7 +33,7 @@ public class InvokeServiceApi {
     @RequestMapping("/access")
     public String access() {
         //尝试获取令牌
-        if (rateLimiterService.tryAcquire()) {
+        if (rateLimiterService.rateLimiter().tryAcquire()) {
             //模拟业务执行500毫秒
             try {
                 Thread.sleep(500);

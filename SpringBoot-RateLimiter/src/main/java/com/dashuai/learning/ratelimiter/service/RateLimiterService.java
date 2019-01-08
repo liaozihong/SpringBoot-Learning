@@ -13,18 +13,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RateLimiterService {
+    private RateLimiter rateLimiter;
+
+
+    public RateLimiterService(int count) {
+        rateLimiter = RateLimiter.create(count);
+    }
 
     /**
      * 创建令牌桶，每秒生成10个令牌，意味着每秒10个tps
      */
-    RateLimiter rateLimiter = RateLimiter.create(10);
-
-    /**
-     * 尝试获取令牌，获取到返回true
-     *
-     * @return boolean
-     */
-    public boolean tryAcquire() {
-        return rateLimiter.tryAcquire();
+    public RateLimiter rateLimiter() {
+        return rateLimiter;
     }
+
 }
