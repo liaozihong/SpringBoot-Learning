@@ -1,0 +1,38 @@
+version: '3'
+services:
+  sentinel1:
+    image: redis       ## 镜像
+    container_name: redis-sentinel-1
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    ports:
+    - "26379:26379"           ## 暴露端口
+    volumes:
+    - "./sentinel1.conf:/usr/local/etc/redis/sentinel.conf"
+  sentinel2:
+    image: redis                ## 镜像
+    container_name: redis-sentinel-2
+    ports:
+    - "26380:26379"           ## 暴露端口
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+    - "./sentinel2.conf:/usr/local/etc/redis/sentinel.conf"
+  sentinel3:
+    image: redis                ## 镜像
+    container_name: redis-sentinel-3
+    ports:
+    - "26381:26379"           ## 暴露端口
+    command: redis-sentinel /usr/local/etc/redis/sentinel.conf
+    volumes:
+    - ./sentinel3.conf:/usr/local/etc/redis/sentinel.conf
+  java-demo:
+    image: redis-docker/springboot-redis-sentinel:1.0.0
+    ports:
+    - "8080:8080"
+    depends_on:
+    - sentinel1
+    - sentinel2
+    - sentinel3
+networks:
+  default:
+    external:
+      name: redis_sentinel-master
