@@ -16,7 +16,7 @@ public class RateLimiterService {
     private RateLimiter rateLimiter;
 
 
-    public RateLimiterService(int count) {
+    public RateLimiterService(double count) {
         rateLimiter = RateLimiter.create(count);
     }
 

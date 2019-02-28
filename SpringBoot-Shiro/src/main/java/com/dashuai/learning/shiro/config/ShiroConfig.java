@@ -110,8 +110,8 @@ public class ShiroConfig {
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
         //如果是本地127.0.0.1，且没密码，可不设,取默认
-//        redisManager.setHost("127.0.0.1");
-//        redisManager.setPassword("");
+        redisManager.setHost("127.0.0.1:6379");
+        redisManager.setPassword("123456");
         redisManager.setTimeout(1800);
         return redisManager;
     }

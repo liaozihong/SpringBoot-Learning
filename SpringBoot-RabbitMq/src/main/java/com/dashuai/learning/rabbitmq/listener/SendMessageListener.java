@@ -30,8 +30,8 @@ public class SendMessageListener {
 
     /**
      * 如果不使用Send_QUEUE，而直接使用DEAD_QUEUE并且没有其他Send_QUEUE的消费者的话，就可以实现延时队列
-     * 因为Config已经设置SEND_QUEUE的消息过期时间，这便是使用死信队列实现延时队列。其实这时的死信队列相当于
-     * 一个缓冲队列而已。
+     * 因为Config已经设置SEND_QUEUE的消息过期时间，这便是使用死信队列实现延时队列。其实这时的发送队列相当于
+     * 一个缓冲队列而已，真正处理是使用死信队列进行处理的。
      *
      * @param people  the MessageConverter会自动转换内容
      * @param channel the channel 信道
