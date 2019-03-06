@@ -43,7 +43,7 @@ public class SwaggerConfig {
 
         return new ApiInfoBuilder()
                 .title("API文档")
-                .description("描述")
+                .description("Nsq 测试发送消息")
                 .termsOfServiceUrl("")
                 .contact(new Contact("dashuai", "", ""))
                 .version("1.0")

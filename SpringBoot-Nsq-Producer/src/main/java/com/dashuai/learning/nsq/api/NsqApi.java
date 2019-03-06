@@ -33,12 +33,24 @@ public class NsqApi {
      */
     @ApiOperation(value = "发送MQ消息接口", notes = "发送mq消息", response = ApiResult.class)
     @ApiImplicitParam(name = "message", value = "队列消息", required = true, dataType = "String", paramType = "query")
-    @GetMapping("/setMq")
+    @GetMapping("/sendMsg")
     public ApiResult mqProduct(String message){
-       boolean isSuccess= mqProductService.mqProduct(message);
-       if (isSuccess) {
-           return new ApiResult().success("发送成功!");
-       }
-        return new ApiResult().error("", 500, "发送失败！");
+        String msg = mqProductService.sendTestMessage(message);
+        return new ApiResult().success(msg);
     }
+
+    /**
+     * Mq product api result.
+     *
+     * @param message the message
+     * @return the api result
+     */
+    @ApiOperation(value = "发送MQ消息至特定Channel接口", notes = "发送mq消息", response = ApiResult.class)
+    @ApiImplicitParam(name = "message", value = "队列消息", required = true, dataType = "String", paramType = "query")
+    @GetMapping("/sendMsgByChannel")
+    public ApiResult mqProductByChannel(String message) {
+        String msg = mqProductService.sendTestMessageByChannel(message);
+        return new ApiResult().success(msg);
+    }
+
 }
