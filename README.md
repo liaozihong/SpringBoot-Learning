@@ -39,7 +39,7 @@ gradle clean build -x test
 ](https://blog.csdn.net/qq_39211866/article/details/84452874)
 
 ### Spring-Memcached
-集成memcached，内置了一个通用的操作管理类，可快速操作缓存。  
+集成memcach`ed，内置了一个通用的操作管理类，可快速操作缓存。  
 [https://blog.csdn.net/qq_39211866/article/details/84312170](https://blog.csdn.net/qq_39211866/article/details/84312170)   
 
 ### SpringBoot-Mongodb 
@@ -52,9 +52,6 @@ gradle clean build -x test
 集成Mybatis，并配置了双数据源，也可直接扩展多数据源。  
 [SpringBoot集成Mybatis实现多数据源
 ](https://blog.csdn.net/qq_39211866/article/details/84843885)
-
-### SpringBoot-Nsq
-集成nsq队列，演示了一个生产者与消费者的实例。  
 
 ### SpringBoot-RabbitMq
 集成RabbitMq，配置了延时队列，死信队列，并且提供了重试机制的设计思想，可做参考。  
@@ -94,6 +91,33 @@ gradle clean build -x test
 添加异步单点登录，同上一条相似;
 添加当前在线人数显示，可自己造轮子，做在线人数踢出功能，思路已给出。
 ```
+
+### SpringBoot-JWT
+使用Jwt标准+Shiro安全框架，对请求进行认证和鉴权。  
+[SpringBoot集成Shiro、JWT 进行请求认证和鉴权](https://blog.csdn.net/qq_39211866/article/details/85222852)
+
+### SpringBoot-Kafka  
+使用SpringBoot集成kafka实现消息生产与消费，日常使用可使项目部分业务逻辑解耦，使项目具有更高的可扩展性，可恢复性，提高性能。   
+[SpringBoot 搭建并使用Kafka消息中间件](https://blog.csdn.net/qq_39211866/article/details/85332030)
+
+### SpringBoot-Validator
+基于validator对参数和实体进行校验，不符合约束条件将会抛出错误，在全局异常处处理。  
+
+### SpringBoot-Redis-Sentinel
+使用SpringBoot连接Redis哨兵集群，配置连接哨兵，由哨兵给出可连接的redis ip，实现高可用。  
+[SpringBoot 2.0 连接 Redis 主从、哨兵集群](https://blog.csdn.net/qq_39211866/article/details/88067664)
+
+### SpringBoot-JTA-Atomikos
+通常在项目中，我用会用到不止一种数据源，也就是多数据源，这时内置的Spring事务管理器并不能对多数据源进行事务处理，所以我们就要使用Atomikos事务管理器来跨多个XA资源的实现分布式JTA事务。   
+[SpringBoot 2.0 集成Atomikos、Durid 实现多数据源、分布式事务](https://blog.csdn.net/qq_39211866/article/details/86547674)
+
+### SpringBoot-Nsq-Producer
+SpringBoot 使用Nsq消息中间件，此项目为消息生产者例子。  
+[Springboot 2 集成 Nsq 消息中间件实现生产消费应用](https://blog.csdn.net/qq_39211866/article/details/88360559)  
+
+### SpringBoot-Nsq-Consumer
+SpringBoot 使用Nsq消息中间件，此项目为消息消费者例子。  
+[Springboot 2 集成 Nsq 消息中间件实现生产消费应用](https://blog.csdn.net/qq_39211866/article/details/88360559)  
 
 ### SpringBoot-Utils
 各项目的依赖模块，存放一些工具类
