@@ -10,6 +10,8 @@ import com.github.brainlag.nsq.lookup.NSQLookup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.Executors;
+
 /**
  * Mq consumer service
  * Created in 2018.11.13
@@ -23,14 +25,16 @@ public class MqConsumerByChannelServiceImpl implements MqConsumerService {
     private String topic;
     private String nsqAddress;
     private Integer nsqPort;
+    private Integer nsqThreadCount;
 
     public MqConsumerByChannelServiceImpl() {
     }
 
-    public MqConsumerByChannelServiceImpl(String topic, String nsqAddress, Integer nsqPort) {
+    public MqConsumerByChannelServiceImpl(String topic, String nsqAddress, Integer nsqPort, Integer nsqThreadCount) {
         this.topic = topic;
         this.nsqAddress = nsqAddress;
         this.nsqPort = nsqPort;
+        this.nsqThreadCount = nsqThreadCount;
     }
 
     /**
@@ -42,6 +46,7 @@ public class MqConsumerByChannelServiceImpl implements MqConsumerService {
         lookup.addLookupAddress(nsqAddress, nsqPort);
         //消费特定的channel
         NSQConsumer consumer = new NSQConsumer(lookup, topic, NsqChannelConst.TEST_CHANNEL, (message) -> {
+//            message = null;
             if (message != null) {
                 String msg = new String(message.getMessage());
                 NsqMessage nsqMessage = null;
@@ -73,9 +78,11 @@ public class MqConsumerByChannelServiceImpl implements MqConsumerService {
                     return;
                 }
             }
-            message.finished();
+//            message.finished();
             return;
         });
+        consumer.setExecutor(Executors.newFixedThreadPool(nsqThreadCount));
+        consumer.setMessagesPerBatch(nsqThreadCount);
         consumer.start();
         log.info("nsq By testChannel 消费者启动成功!");
     }

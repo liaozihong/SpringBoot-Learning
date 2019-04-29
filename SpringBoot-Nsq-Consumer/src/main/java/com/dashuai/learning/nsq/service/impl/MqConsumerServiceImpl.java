@@ -10,6 +10,8 @@ import com.github.brainlag.nsq.lookup.NSQLookup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.Executors;
+
 /**
  * Mq consumer service
  * Created in 2018.11.13
@@ -23,14 +25,16 @@ public class MqConsumerServiceImpl implements MqConsumerService {
     private String topic;
     private String nsqAddress;
     private Integer nsqPort;
+    private Integer nsqThreadCount;
 
     public MqConsumerServiceImpl() {
     }
 
-    public MqConsumerServiceImpl(String topic, String nsqAddress, Integer nsqPort) {
+    public MqConsumerServiceImpl(String topic, String nsqAddress, Integer nsqPort, Integer nsqThreadCount) {
         this.topic = topic;
         this.nsqAddress = nsqAddress;
         this.nsqPort = nsqPort;
+        this.nsqThreadCount = nsqThreadCount;
     }
 
     /**
@@ -76,6 +80,9 @@ public class MqConsumerServiceImpl implements MqConsumerService {
             message.finished();
             return;
         });
+        //默认是启动一次开启200个线程，处理200个任务，实际用不了那么多，根据需求配置就行了。
+        consumer.setExecutor(Executors.newFixedThreadPool(nsqThreadCount));
+        consumer.setMessagesPerBatch(nsqThreadCount);
         consumer.start();
         log.info("nsq 消费者启动成功!");
     }

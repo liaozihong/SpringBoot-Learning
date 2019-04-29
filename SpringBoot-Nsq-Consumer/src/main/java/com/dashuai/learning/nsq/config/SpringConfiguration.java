@@ -28,6 +28,9 @@ public class SpringConfiguration {
 
     @Value("${nsq.port}")
     Integer nsqPort;
+    @Value("${nsq.thread.count}")
+    Integer nsqThreadCount;
+
     /**
      * Mq consumer service mq consumer service.
      *
@@ -35,11 +38,11 @@ public class SpringConfiguration {
      */
     @Bean(initMethod = "mqConsumer")
     public MqConsumerServiceImpl mqConsumerService() {
-        return new MqConsumerServiceImpl(topic, nsqAddress, nsqPort);
+        return new MqConsumerServiceImpl(topic, nsqAddress, nsqPort, nsqThreadCount);
     }
 
     @Bean(initMethod = "mqConsumer")
     public MqConsumerByChannelServiceImpl mqConsumerByChannelService() {
-        return new MqConsumerByChannelServiceImpl(topic, nsqAddress, nsqPort);
+        return new MqConsumerByChannelServiceImpl(topic, nsqAddress, nsqPort, nsqThreadCount);
     }
 }
