@@ -76,8 +76,8 @@ public class OperationApi {
             @ApiImplicitParam(name = "peopleName", value = "人名", required = true, dataType = "String"),
             @ApiImplicitParam(name = "userName", value = "用户信息", required = true, dataType = "String")
     })
-    public ApiResult insertPeopleAndUser(String peopleName,String userName) throws Exception {
-        User user=new User();
+    public ApiResult insertPeopleAndUser(String peopleName, String userName) throws Exception {
+        User user = new User();
         user.setUserName(userName);
         user.setPassword("15251251");
         user.setAge(22);
@@ -86,6 +86,28 @@ public class OperationApi {
         people.setAge(20);
         people.setSex("男");
         Boolean isSuccess = peopleService.insertUserAndPeople(user, people);
+        if (isSuccess) {
+            return ApiResult.prepare().success("同时添加两表成功!");
+        }
+        return ApiResult.prepare().error(JSONParseUtils.object2JsonString(people), 500, "添加失败，全部回滚");
+    }
+
+    @PostMapping(value = "/insertPeopleAndUserV2", produces = "application/json;charset=UTF-8")
+    @ApiOperation(value = "添加两个表V2", notes = "测试分布式事务", response = ApiResult.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "peopleName", value = "人名", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "userName", value = "用户信息", required = true, dataType = "String")
+    })
+    public ApiResult insertPeopleAndUserV2(String peopleName, String userName) throws Exception {
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword("15251251");
+        user.setAge(22);
+        People people = new People();
+        people.setName(peopleName);
+        people.setAge(20);
+        people.setSex("男");
+        Boolean isSuccess = peopleService.insertUserAndPeopleV2(user, people);
         if (isSuccess) {
             return ApiResult.prepare().success("同时添加两表成功!");
         }

@@ -7,7 +7,10 @@ import com.dashuai.learning.jta.model.test.People;
 import com.dashuai.learning.jta.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 
@@ -28,6 +31,8 @@ public class PeopleServiceImpl implements PeopleService {
     PeopleMapper peopleMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    TransactionTemplate transactionTemplate;
 
     @Override
     public List<People> selectAll() {
@@ -49,5 +54,22 @@ public class PeopleServiceImpl implements PeopleService {
             throw new RuntimeException("抛出runtime异常，导致回滚数据");
         }
         return true;
+    }
+
+    @Override
+    public Boolean insertUserAndPeopleV2(User user, People people) {
+        return transactionTemplate.execute(new TransactionCallback<Boolean>() {
+
+            @Override
+            public Boolean doInTransaction(TransactionStatus status) {
+                try {
+                    peopleMapper.insert(people);
+                    userMapper.insertSelective(user);
+                } catch (Exception e) {
+                    throw new RuntimeException("抛出runtime异常，导致回滚数据");
+                }
+                return true;
+            }
+        });
     }
 }
