@@ -119,5 +119,11 @@ SpringBoot 使用Nsq消息中间件，此项目为消息生产者例子。
 SpringBoot 使用Nsq消息中间件，此项目为消息消费者例子。  
 [Springboot 2 集成 Nsq 消息中间件实现生产消费应用](https://blog.csdn.net/qq_39211866/article/details/88360559)  
 
+### SpringBoot-Mybatis-Mycat
+使用Mycat数据库中间件，对Mysql进行数据分片存放，主从复制(待实现)
+
+### SpringBoot-Nacos-Config
+使用Nacos注册中心实现动态配置
+
 ### SpringBoot-Utils
 各项目的依赖模块，存放一些工具类
