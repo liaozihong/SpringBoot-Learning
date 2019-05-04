@@ -7,7 +7,6 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -27,7 +26,6 @@ import java.util.concurrent.CountDownLatch;
  * @author Liaozihong
  */
 @Slf4j
-@Service
 public class DistributedLockByZookeeper {
     private final static String ROOT_PATH_LOCK = "dashuai";
 
@@ -42,6 +40,7 @@ public class DistributedLockByZookeeper {
     /**
      * 获取分布式锁
      * 创建一个临时节点，
+     *
      * @param path the path
      */
     public void acquireDistributedLock(String path) {
