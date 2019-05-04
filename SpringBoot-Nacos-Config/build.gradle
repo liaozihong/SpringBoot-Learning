@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":SpringBoot-Utils")
+    compile 'com.alibaba.boot:nacos-config-spring-boot-starter:0.2.1'
+    compile 'com.alibaba.boot:nacos-config-spring-boot-actuator:0.2.1'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:2.0.4.RELEASE'
+}
