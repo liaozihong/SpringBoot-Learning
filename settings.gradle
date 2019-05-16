@@ -27,6 +27,8 @@ rootProject.name = 'springboot'
 //include(':SpringBoot-Kafka')
 //include(':SpringBoot-Validator')
 include(':SpringBoot-Oauth2')
+include(':SpringBoot-Oauth2-Code')
+include(':SpringBoot-SpringSecurity')
 //include(':SpringBoot-Redis-Sentinel')
 //include(':SpringBoot-Rocketmq')
 //include(':SpringBoot-Nacos-Config')
