@@ -1,0 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: localMavenRepo)
+            //构造项目的Pom文件
+            pom.project {
+                name = project.name
+                packaging = 'jar'
+                description = 'description'
+            }
+        }
+    }
+}
+dependencies {
+//    compile project(':SpringBoot-Utils')
+    testCompile 'org.springframework.boot:spring-boot-configuration-processor:2.0.5.RELEASE'
+    compile 'org.springframework.boot:spring-boot-autoconfigure:2.0.5.RELEASE'
+}
