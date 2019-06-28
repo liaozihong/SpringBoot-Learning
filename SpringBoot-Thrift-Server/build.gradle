@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':SpringBoot-Utils')
+    compile 'org.apache.thrift:libthrift:0.12.0'
+}

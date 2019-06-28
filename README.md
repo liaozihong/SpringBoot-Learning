@@ -125,5 +125,21 @@ SpringBoot 使用Nsq消息中间件，此项目为消息消费者例子。
 ### SpringBoot-Nacos-Config
 使用Nacos注册中心实现动态配置
 
+### SpringBoot-SpringSecurity
+SpringBoot 基于Spring-Security实现资源的权限控制  
+[SpringBoot2 集成SpringSecurity对资源访问认证](https://blog.csdn.net/qq_39211866/article/details/90273681)
+
+### SpringBoot-Oauth2
+SpringBoot 基于Oauth2授权协议实现简化、密码、客户端模式.
+
+### SpringBoot-Oauth2-Code
+SpringBoot 基于Oauth2授权协议实现完整的授权码登录流程.
+
+### SpringBoot-Test-Starter
+SpringBoot 自动配置例子，了解SpringBoot的Starter原理。
+
+### SpringBoot-Builder-Docker
+SpringBoot 使用Gradle做依赖管理时，配置打包docker镜像的DEMO   
+
 ### SpringBoot-Utils
 各项目的依赖模块，存放一些工具类

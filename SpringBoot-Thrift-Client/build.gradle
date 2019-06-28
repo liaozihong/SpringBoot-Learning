@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':SpringBoot-Utils')
+    compile 'org.apache.thrift:libthrift:0.12.0'
+    testCompile('org.springframework.boot:spring-boot-starter-test:2.0.4.RELEASE')
+}
