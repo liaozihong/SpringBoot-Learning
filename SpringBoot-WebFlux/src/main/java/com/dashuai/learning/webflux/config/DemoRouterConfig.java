@@ -35,12 +35,14 @@ public class DemoRouterConfig {
 
     @Bean
     public RouterFunction<ServerResponse> routersHello() {
-        return route(GET("/hello"),(ServerRequest req) ->ok().body(Mono.just("Hello World"),String.class));
+        return route(GET("/hello"), (ServerRequest req) -> ok().body(Mono.just("Hello World"), String.class));
     }
+
     /**
      * Routes router function.
      * RouterFunction，顾名思义，路由，相当于@RequestMapping，用来判断什么样的url映射到那个
      * 具体的HandlerFunction，输入为请求，输出为装在Mono里边的Handlerfunction：
+     *
      * @return the router function
      */
     @Bean
@@ -56,10 +58,11 @@ public class DemoRouterConfig {
                 )
         );
     }
+
     @Bean
-    public RouterFunction<ServerResponse> timeRouter(){
+    public RouterFunction<ServerResponse> timeRouter() {
         return route(GET("/time"), req -> timeHandler.getTime(req))
                 .andRoute(GET("/date"), timeHandler::getDate)
-                .andRoute(GET("/times"),timeHandler::sendTimePerSec);
+                .andRoute(GET("/times"), timeHandler::sendTimePerSec);
     }
 }

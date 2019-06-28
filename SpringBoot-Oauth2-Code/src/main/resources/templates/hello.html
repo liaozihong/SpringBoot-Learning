@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<div class="container">
+    <h1 th:inline="text">Hello <span sec:authentication="name"></span></h1>
+    <h3>The Role is <span sec:authentication="principal.authorities"></span></h3>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-done" value="Sign Out"/>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

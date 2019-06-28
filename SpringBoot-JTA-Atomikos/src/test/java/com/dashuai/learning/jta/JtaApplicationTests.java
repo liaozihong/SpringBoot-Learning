@@ -24,7 +24,7 @@ public class JtaApplicationTests {
     @Test
     @Transactional
     public void contextLoads() {
-        User user=new User();
+        User user = new User();
         user.setUserName("你妹哦");
         user.setPassword("我去");
         user.setAge(20);

@@ -34,7 +34,7 @@ public class NsqApi {
     @ApiOperation(value = "发送MQ消息接口", notes = "发送mq消息", response = ApiResult.class)
     @ApiImplicitParam(name = "message", value = "队列消息", required = true, dataType = "String", paramType = "query")
     @GetMapping("/sendMsg")
-    public ApiResult mqProduct(String message){
+    public ApiResult mqProduct(String message) {
         String msg = mqProductService.sendTestMessage(message);
         return new ApiResult().success(msg);
     }

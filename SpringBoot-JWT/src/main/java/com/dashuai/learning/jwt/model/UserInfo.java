@@ -19,6 +19,7 @@ public class UserInfo implements Serializable {
     public UserInfo() {
 
     }
+
     public UserInfo(UserInfo info) {
         this.username = info.getUsername();
         this.password = info.getPassword();
@@ -128,6 +129,7 @@ public class UserInfo implements Serializable {
     public Byte getState() {
         return state;
     }
+
     /**
      * 密码盐.
      *
@@ -136,6 +138,7 @@ public class UserInfo implements Serializable {
     public String getCredentialsSalt() {
         return this.username + this.salt;
     }
+
     /**
      * Sets state.
      *

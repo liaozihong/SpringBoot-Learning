@@ -8,7 +8,6 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 import java.io.UnsupportedEncodingException;
-import java.util.concurrent.*;
 
 /**
  * Created in 2019.04.04
@@ -26,7 +25,7 @@ public class TransactionProducer {
     public static void main(String[] args) throws InterruptedException, MQClientException {
         TransactionListener transactionListener = new TransactionListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("please_rename_unique_group_name");
-        producer.setNamesrvAddr("对外暴露的ip:9876");
+        producer.setNamesrvAddr("120.79.58.138:9876");
         ExecutorService executorService = new ThreadPoolExecutor(2, 5,
                 100, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2000), new ThreadFactory() {
             @Override

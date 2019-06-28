@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dashuai.learning.jwt.mapper.UserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.dashuai.learning.jwt.model.UserRole">
-    
-    <result column="role_id" jdbcType="INTEGER" property="roleId" />
-    <result column="uid" jdbcType="INTEGER" property="uid" />
-  </resultMap>
-  <insert id="insert" parameterType="com.dashuai.learning.jwt.model.UserRole">
+    <resultMap id="BaseResultMap" type="com.dashuai.learning.jwt.model.UserRole">
+
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.dashuai.learning.jwt.model.UserRole">
     
     insert into sys_user_role (role_id, uid)
     values (#{roleId,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.dashuai.learning.jwt.model.UserRole">
-    
-    insert into sys_user_role
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="roleId != null">
-        role_id,
-      </if>
-      <if test="uid != null">
-        uid,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="roleId != null">
-        #{roleId,jdbcType=INTEGER},
-      </if>
-      <if test="uid != null">
-        #{uid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+    <insert id="insertSelective" parameterType="com.dashuai.learning.jwt.model.UserRole">
+
+        insert into sys_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
 </mapper>

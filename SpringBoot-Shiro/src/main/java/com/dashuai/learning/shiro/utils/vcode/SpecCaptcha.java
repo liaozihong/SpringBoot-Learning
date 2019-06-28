@@ -1,7 +1,6 @@
 package com.dashuai.learning.shiro.utils.vcode;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;

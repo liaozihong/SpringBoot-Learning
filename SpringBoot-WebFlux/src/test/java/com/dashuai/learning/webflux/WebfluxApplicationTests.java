@@ -25,6 +25,7 @@ public class WebfluxApplicationTests {
      * 1.配置请求Header：Content-Type: text/event-stream，即SSE；
      * 2.这次用log()代替doOnNext(System.out::println)来查看每个元素；
      * 3.由于/times是一个无限流，这里取前10个，会导致流被取消；
+     *
      * @throws InterruptedException
      */
     @Test

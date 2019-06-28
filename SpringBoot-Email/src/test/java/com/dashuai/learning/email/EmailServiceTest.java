@@ -16,29 +16,29 @@ public class EmailServiceTest {
 
     @Test
     public void sendSimpleMailTest() {
-        mailService.sendSimpleMail("15017263512@163.com","test simple mail"," hello this is simple mail");
+        mailService.sendSimpleMail("15017263512@163.com", "test simple mail", " hello this is simple mail");
     }
 
     @Test
-    public void sendHtmlMailTest(){
-        String content="<html>\n" +
+    public void sendHtmlMailTest() {
+        String content = "<html>\n" +
                 "<body>\n" +
                 "    <h3>hello world ! 这是一封Html邮件!</h3>\n" +
                 "</body>\n" +
                 "</html>";
-        mailService.sendHtmlMail("15017263512@163.com","test html mail",content);
+        mailService.sendHtmlMail("15017263512@163.com", "test html mail", content);
     }
 
     @Test
-    public void sendAttachmentsMail(){
-        String filePath="E:\\var\\log\\elkTest\\error\\2018-11-30.log";
+    public void sendAttachmentsMail() {
+        String filePath = "E:\\var\\log\\elkTest\\error\\2018-11-30.log";
         mailService.sendAttachmentsMail("15017263512@163.com", "主题：带附件的邮件", "有附件，请查收！", filePath);
     }
 
     @Test
     public void sendInlineResourceMail() {
         String rscId = "neo006";
-        String content="<html><body>这是有图片的邮件：<img src=\'cid:" + rscId + "\' ></body></html>";
+        String content = "<html><body>这是有图片的邮件：<img src=\'cid:" + rscId + "\' ></body></html>";
         String imgPath = "C:\\Users\\Admin\\Pictures\\Camera Roll\\9499189867_1476052069.jpg";
 
         mailService.sendInlineResourceMail("15017263512@163.com", "主题：这是有图片的邮件", content, imgPath, rscId);
@@ -49,7 +49,7 @@ public class EmailServiceTest {
         //创建邮件正文
         Context context = new Context();
         context.setVariable("id", "006");
-        mailService.sendTemplateMail("15017263512@163.com","主题：这是模板邮件",
-                "emailTemplate",context);
+        mailService.sendTemplateMail("15017263512@163.com", "主题：这是模板邮件",
+                "emailTemplate", context);
     }
 }

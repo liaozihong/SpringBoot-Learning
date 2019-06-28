@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Spring Boot Web Thymeleaf + OAuth2 Code</h1>
+    </div>
+    <h2>1. <a th:href="@{/aqy/auth}">Authorization Aiqiyi (need login) </a></h2>
+    <h2>2. <a th:href="@{/yk/auth}">Authorization YouKu (need login) </a></h2>
+    <h2>3. <a th:href="@{'/qq/info/'+${#httpServletRequest.remoteUser}}">
+        获取<span sec:authentication="name"></span>（需要access_token）</a></h2>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

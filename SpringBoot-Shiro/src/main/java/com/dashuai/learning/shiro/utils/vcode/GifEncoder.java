@@ -1,9 +1,8 @@
 package com.dashuai.learning.shiro.utils.vcode;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-import java.io.*;
+import java.io.IOException;
 
 /**
  * Class AnimatedGifEncoder - Encodes a GIF file consisting of one or

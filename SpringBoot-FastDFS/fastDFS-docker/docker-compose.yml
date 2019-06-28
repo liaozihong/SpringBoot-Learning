@@ -1,20 +1,20 @@
 version: '3'
 
 services:
- tracker:
-  image: "morunchang/fastdfs"
-  ports:
-  - "22122:22122"
-  entrypoint: sh tracker.sh
- storage:
-  depends_on:
-    - tracker
-  build: ./storage
-  environment:
-   GROUP_NAME: group1
-   TRACKER_IP: 机器IP:22122
-  ports:
-  - "8088:8080"
-  - "23000:23000"
-  volumes:
-    - /home/fastdfs/data/fast_data:/data/fast_data
+  tracker:
+    image: "morunchang/fastdfs"
+    ports:
+      - "22122:22122"
+    entrypoint: sh tracker.sh
+  storage:
+    depends_on:
+      - tracker
+    build: ./storage
+    environment:
+      GROUP_NAME: group1
+      TRACKER_IP: 机器IP:22122
+    ports:
+      - "8088:8080"
+      - "23000:23000"
+    volumes:
+      - /home/fastdfs/data/fast_data:/data/fast_data

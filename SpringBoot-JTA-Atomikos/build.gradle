@@ -1,4 +1,3 @@
-
 dependencies {
     compile project(':SpringBoot-Utils')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-jta-atomikos', version: '2.0.4.RELEASE'

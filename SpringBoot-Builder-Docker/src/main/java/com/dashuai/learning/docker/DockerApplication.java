@@ -16,13 +16,14 @@ public class DockerApplication {
 
     @Autowired
     ExampleService exampleService;
+
     @RequestMapping("/")
-    public String getDate(){
+    public String getDate() {
         return new Date().toString();
     }
 
     @RequestMapping("/auto/{name}")
-    public String getWap(@PathVariable String name){
+    public String getWap(@PathVariable String name) {
         return exampleService.wrap(name);
     }
 

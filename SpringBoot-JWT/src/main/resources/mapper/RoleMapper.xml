@@ -1,98 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dashuai.learning.jwt.mapper.RoleMapper">
-  <resultMap id="BaseResultMap" type="com.dashuai.learning.jwt.model.Role">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="available" jdbcType="BIT" property="available" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="role" jdbcType="VARCHAR" property="role" />
-  </resultMap>
-  <resultMap id="RoleAndPermissionResultMap" type="com.dashuai.learning.jwt.model.Role" extends="BaseResultMap">
-    <collection property="permissions" ofType="com.dashuai.learning.jwt.model.Permission">
-      <id column="id" jdbcType="INTEGER" property="id" />
-      <result column="available" jdbcType="BIT" property="available" />
-      <result column="name" jdbcType="VARCHAR" property="name" />
-      <result column="parent_id" jdbcType="BIGINT" property="parentId" />
-      <result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
-      <result column="permission" jdbcType="VARCHAR" property="permission" />
-      <result column="resource_type" jdbcType="CHAR" property="resourceType" />
-      <result column="url" jdbcType="VARCHAR" property="url" />
-    </collection>
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.dashuai.learning.jwt.model.Role">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="available" jdbcType="BIT" property="available"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+    </resultMap>
+    <resultMap id="RoleAndPermissionResultMap" type="com.dashuai.learning.jwt.model.Role" extends="BaseResultMap">
+        <collection property="permissions" ofType="com.dashuai.learning.jwt.model.Permission">
+            <id column="id" jdbcType="INTEGER" property="id"/>
+            <result column="available" jdbcType="BIT" property="available"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+            <result column="parent_ids" jdbcType="VARCHAR" property="parentIds"/>
+            <result column="permission" jdbcType="VARCHAR" property="permission"/>
+            <result column="resource_type" jdbcType="CHAR" property="resourceType"/>
+            <result column="url" jdbcType="VARCHAR" property="url"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, available, description, role
   </sql>
-  <select id="selectRoleOfPerm" resultMap="RoleAndPermissionResultMap">
+    <select id="selectRoleOfPerm" resultMap="RoleAndPermissionResultMap">
     select r.*,p.* from sys_role r,sys_permission p,sys_role_permission rp where
     rp.role_id=#{id} and rp.role_id=r.id  and p.id=rp.permission_id
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from sys_role
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     
     delete from sys_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dashuai.learning.jwt.model.Role">
+    <insert id="insert" parameterType="com.dashuai.learning.jwt.model.Role">
     
     insert into sys_role (id, available, description, 
       role)
     values (#{id,jdbcType=INTEGER}, #{available,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
       #{role,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dashuai.learning.jwt.model.Role">
-    
-    insert into sys_role
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="available != null">
-        available,
-      </if>
-      <if test="description != null">
-        description,
-      </if>
-      <if test="role != null">
-        role,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="available != null">
-        #{available,jdbcType=BIT},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="role != null">
-        #{role,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dashuai.learning.jwt.model.Role">
-    
-    update sys_role
-    <set>
-      <if test="available != null">
-        available = #{available,jdbcType=BIT},
-      </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="role != null">
-        role = #{role,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.dashuai.learning.jwt.model.Role">
+    <insert id="insertSelective" parameterType="com.dashuai.learning.jwt.model.Role">
+
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="available != null">
+                available,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="role != null">
+                role,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="available != null">
+                #{available,jdbcType=BIT},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dashuai.learning.jwt.model.Role">
+
+        update sys_role
+        <set>
+            <if test="available != null">
+                available = #{available,jdbcType=BIT},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="role != null">
+                role = #{role,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dashuai.learning.jwt.model.Role">
     
     update sys_role
     set available = #{available,jdbcType=BIT},

@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 public interface UserInfoMapper {
     UserInfo selectUserOfRole(@Param("uid") Integer uid);
 
-    UserInfo selectByName(@Param("username")String username);
+    UserInfo selectByName(@Param("username") String username);
 
-    UserInfo selectByNameAndPassword(@Param("username")String username,@Param("password")String password);
+    UserInfo selectByNameAndPassword(@Param("username") String username, @Param("password") String password);
 
     boolean deleteByPrimaryKey(Integer uid);
 

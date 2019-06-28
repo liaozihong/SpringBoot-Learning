@@ -1,6 +1,5 @@
 package com.dashuai.learning.shiro.utils.vcode;
 
-import java.awt.*;
 import java.io.OutputStream;
 
 /**

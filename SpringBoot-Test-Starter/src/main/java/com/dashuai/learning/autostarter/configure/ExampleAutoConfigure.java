@@ -35,9 +35,10 @@ public class ExampleAutoConfigure {
 
     /**
      * Example service example service.
+     *
+     * @return the example service
      * @ConditionalOnMissingBean 该实例不存在是才会执行
      * @ConditionalOnProperty 配置enable为true才会实例化
-     * @return the example service
      */
     @Bean
     @ConditionalOnMissingBean

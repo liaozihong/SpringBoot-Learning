@@ -255,7 +255,9 @@ public class RPCDateService {
         public @org.apache.thrift.annotation.Nullable
         java.lang.String userName; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             USER_NAME((short) 1, "userName");
 
@@ -368,7 +370,9 @@ public class RPCDateService {
             this.userName = null;
         }
 
-        /** Returns true if field userName is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field userName is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetUserName() {
             return this.userName != null;
         }
@@ -402,7 +406,9 @@ public class RPCDateService {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();
@@ -623,7 +629,9 @@ public class RPCDateService {
         public @org.apache.thrift.annotation.Nullable
         java.lang.String success; // required
 
-        /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+        /**
+         * The set of fields this struct contains, along with convenience methods for finding and manipulating them.
+         */
         public enum _Fields implements org.apache.thrift.TFieldIdEnum {
             SUCCESS((short) 0, "success");
 
@@ -736,7 +744,9 @@ public class RPCDateService {
             this.success = null;
         }
 
-        /** Returns true if field success is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field success is set (has been assigned a value) and false otherwise
+         */
         public boolean isSetSuccess() {
             return this.success != null;
         }
@@ -770,7 +780,9 @@ public class RPCDateService {
             throw new java.lang.IllegalStateException();
         }
 
-        /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+        /**
+         * Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise
+         */
         public boolean isSet(_Fields field) {
             if (field == null) {
                 throw new java.lang.IllegalArgumentException();

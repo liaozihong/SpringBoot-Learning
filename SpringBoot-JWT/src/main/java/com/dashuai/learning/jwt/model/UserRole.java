@@ -10,12 +10,13 @@ import java.io.Serializable;
  *
  * @author Liaozihong
  */
-public class UserRole  implements Serializable {
+public class UserRole implements Serializable {
 
     private static final long serialVersionUID = -7317214882734267788L;
 
     public UserRole() {
     }
+
     public UserRole(Integer roleId, Integer uid) {
         this.roleId = roleId;
         this.uid = uid;
