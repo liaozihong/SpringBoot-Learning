@@ -141,5 +141,11 @@ SpringBoot 自动配置例子，了解SpringBoot的Starter原理。
 ### SpringBoot-Builder-Docker
 SpringBoot 使用Gradle做依赖管理时，配置打包docker镜像的DEMO   
 
+### SpringBoot-Thrift-Server
+SpringBoot 基于Thrift实现RPC服务器端
+
+### SpringBoot-Thrift-Client
+SpringBoot基于Thrift实现RPC客户端
+
 ### SpringBoot-Utils
 各项目的依赖模块，存放一些工具类
