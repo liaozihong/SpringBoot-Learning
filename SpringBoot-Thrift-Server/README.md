@@ -22,6 +22,11 @@ service RPCDateService{
 接着右键编译：  
 ![](https://ws1.sinaimg.cn/large/006mOQRagy1g4k6u8uf9ij30gd0iijtb.jpg)  
 就会生成对应的java服务类。  
+当然，你也可以使用命令编译：  
+```thrift
+thrift --gen java RPCDateService.thrift
+```
+
 
 导入对应的jar包，进行server端和client端的编码,我下载的是最新的0.12.0 版本的thrift，所以使用jar包0.12.0的。  
 ```txt
@@ -31,9 +36,10 @@ server端和client端源码请前往github上查看，链接如下：
 https://github.com/liaozihong/SpringBoot-Learning/tree/master/SpringBoot-Thrift-Server    
 https://github.com/liaozihong/SpringBoot-Learning/tree/master/SpringBoot-Thrift-Client  
 
-服务端首次处理服务调用如下错误，但不影响，具体未详，还望大佬指出。  
+服务端首次处理服务调用如下错误，但不影响，具体不详，还望大佬指出。  
  ![](https://ws1.sinaimg.cn/large/006mOQRagy1g4k9tbqnnzj311c05mjse.jpg)
 
 参考链接：  
-https://www.cnblogs.com/fingerboy/p/6424248.html  
-[Thrift语法参考](https://www.cnblogs.com/yuananyun/p/5186430.html)
+https://www.cnblogs.com/fingerboy/p/6424248.html    
+https://blog.csdn.net/houjixin/article/details/42778335   
+[Thrift语法参考](https://www.cnblogs.com/yuananyun/p/5186430.html)  
