@@ -42,11 +42,11 @@ public class RPCThriftServer {
         try {
             TServerTransport transport = new TServerSocket(port);
             TThreadPoolServer.Args tArgs = new TThreadPoolServer.Args(transport);
-            tArgs.processor(processor);
-            tArgs.protocolFactory(protocolFactory);
-            tArgs.transportFactory(transportFactory);
-            tArgs.minWorkerThreads(minThreads);
-            tArgs.maxWorkerThreads(maxThreads);
+            tArgs.processor(processor)
+                    .protocolFactory(protocolFactory)
+                    .transportFactory(transportFactory)
+                    .minWorkerThreads(minThreads)
+                    .maxWorkerThreads(maxThreads);
             TServer server = new TThreadPoolServer(tArgs);
             logger.info("thrift服务启动成功, 端口={}", port);
             server.serve();
