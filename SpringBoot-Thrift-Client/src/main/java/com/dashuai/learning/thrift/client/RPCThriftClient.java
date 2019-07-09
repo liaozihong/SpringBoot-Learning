@@ -28,8 +28,12 @@ public class RPCThriftClient {
         this.port = port;
     }
 
+    /**
+     * 初始化客户端
+     */
     public void init() {
         transport = new TSocket(host, port);
+        //使用二进制协议
         protocol = new TBinaryProtocol(transport);
         client = new RPCDateService.Client(protocol);
     }
