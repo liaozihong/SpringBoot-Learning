@@ -1,8 +1,9 @@
 package com.dashuai.learning.rocketmq.config;
 
-import com.dashuai.learning.rocketmq.mq.Producer;
 import com.dashuai.learning.rocketmq.mq.delay.DelayProducer;
 import com.dashuai.learning.rocketmq.mq.filter.FilterProducer;
+import com.dashuai.learning.rocketmq.mq.order.OrderedProducer;
+import com.dashuai.learning.rocketmq.mq.simple.Producer;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,5 +60,10 @@ public class RocketmqConfiguration {
     @Bean
     public FilterProducer filterProducer() {
         return new FilterProducer(mqProducer());
+    }
+
+    @Bean
+    public OrderedProducer orderedProducer() {
+        return new OrderedProducer(mqProducer());
     }
 }

@@ -1,4 +1,4 @@
-package com.dashuai.learning.rocketmq.mq;
+package com.dashuai.learning.rocketmq.mq.simple;
 
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;

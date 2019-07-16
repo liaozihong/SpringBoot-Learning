@@ -13,6 +13,12 @@ public class TransactionListenerImpl implements TransactionListener {
     private ConcurrentHashMap<String, Integer> localTrans = new ConcurrentHashMap<>();
 
 
+    /**
+     * 处理事务逻辑，设立一个自增数，取模等于1的提交处理消费，等于2混，等于0的暂不处理
+     * @param message
+     * @param o
+     * @return
+     */
     @Override
     public LocalTransactionState executeLocalTransaction(Message message, Object o) {
         int value = transactionIndex.getAndIncrement();
@@ -21,6 +27,11 @@ public class TransactionListenerImpl implements TransactionListener {
         return LocalTransactionState.UNKNOW;
     }
 
+    /**
+     * 检查本地事务状态并响应MQ检查请求
+     * @param messageExt
+     * @return
+     */
     @Override
     public LocalTransactionState checkLocalTransaction(MessageExt messageExt) {
         Integer status = localTrans.get(messageExt.getTransactionId());
