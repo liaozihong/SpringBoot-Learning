@@ -1,0 +1,47 @@
+apply plugin: 'com.google.protobuf'
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.1'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.5.1"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.16.1'
+        }
+    }
+    //配置生成输出目录
+    generatedFilesBaseDir = "$projectDir/src"
+    generateProtoTasks {
+        all()*.plugins {
+            grpc { outputSubDir = "java" }
+        }
+    }
+}
+sourceSets {
+    main {
+        proto {
+            // In addition to the default 'src/main/proto'
+            srcDir 'src/main/protobuf'
+            srcDir 'src/main/protocolbuffers'
+            include '**/*.protodevel'
+        }
+        java {
+        }
+    }
+    test {
+        proto {
+            // In addition to the default 'src/test/proto'
+            srcDir 'src/test/protocolbuffers'
+        }
+    }
+}

@@ -1,0 +1,28 @@
+allprojects {
+    group = 'com.dashuai.learning'
+    version = '1.0.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    }
+    dependencies {
+        compile project(':SpringBoot-Utils')
+//        runtime 'io.netty:netty-tcnative-boringssl-static:2.0.20.Final'
+        compile group: 'net.devh', name: 'grpc-client-spring-boot-starter', version: '2.0.1.RELEASE'
+        compile group: 'net.devh', name: 'grpc-server-spring-boot-starter', version: '2.0.1.RELEASE'
+
+    }
+}
+
+

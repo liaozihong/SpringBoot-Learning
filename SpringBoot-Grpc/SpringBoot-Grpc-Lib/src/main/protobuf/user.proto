@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_package = "com.dashuai.learning.grpc.lib.proto";
+
+service User {
+    rpc SaveUser (UserData) returns (UserResponse) {
+    }
+    rpc GetUser (UserRequest) returns (UserData) {
+    }
+
+}
+message UserData {
+    int32 id = 1;
+    string name = 2;
+    string sex = 3;
+    int32 age = 4;
+    string remark = 5;
+}
+message UserRequest {
+    int32 id = 1;
+}
+message UserResponse {
+    bool isSuccess = 1;
+}
