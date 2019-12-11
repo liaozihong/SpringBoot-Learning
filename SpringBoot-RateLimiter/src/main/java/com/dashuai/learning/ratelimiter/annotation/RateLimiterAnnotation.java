@@ -13,12 +13,12 @@ public @interface RateLimiterAnnotation {
      *
      * @return
      */
-    String name();
+    String name() default "";
 
     /**
      * 每秒限流次数
      *
      * @return
      */
-    double count();
+    double count() default 1000;
 }
