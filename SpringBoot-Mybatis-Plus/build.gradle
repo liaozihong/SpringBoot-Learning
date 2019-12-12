@@ -1,0 +1,9 @@
+dependencies {
+    compile project(':SpringBoot-Utils')
+    compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
+    //代码生成器
+    compile 'com.baomidou:mybatis-plus-generator:3.0.1'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+    compile 'org.apache.velocity:velocity-engine-core:2.1'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.4.RELEASE'
+}

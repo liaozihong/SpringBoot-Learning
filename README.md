@@ -147,5 +147,11 @@ SpringBoot 使用Gradle做依赖管理时，配置打包docker镜像的DEMO
 #### SpringBoot-Thrift-Client(Thrift  实现远程服务调用 客戶端)
 SpringBoot基于Thrift实现RPC客户端
 
+#### SpringBoot-Mybatis-Plus
+SpringBoot 集成Mybatis Plus，内置乐观锁，crud，自动填充示例
+
+#### SpringBoot-Alibaba-Sentinel
+SpringBoot 使用 Alibaba开源监控平台 sentinel 示例
+
 #### SpringBoot-Utils 
 各项目的依赖模块，存放一些工具类
