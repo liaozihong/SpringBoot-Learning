@@ -153,5 +153,5 @@ SpringBoot 集成Mybatis Plus，内置乐观锁，crud，自动填充示例
 #### SpringBoot-Alibaba-Sentinel
 SpringBoot 使用 Alibaba开源监控平台 sentinel 示例
 
-#### SpringBoot-Utils 
+#### SpringBoot-Support 
 各项目的依赖模块，存放一些工具类

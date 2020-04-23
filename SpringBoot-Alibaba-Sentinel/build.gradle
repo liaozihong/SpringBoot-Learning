@@ -23,7 +23,7 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 dependencies {
-    compile project(':SpringBoot-Utils')
+    compile project(':SpringBoot-Support')
     compile 'org.springframework.cloud:spring-cloud-starter-alibaba-sentinel:0.2.2.RELEASE'
 }
 //具体配置生成镜像

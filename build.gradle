@@ -1,3 +1,20 @@
+//定义扩展属性(给脚本用的脚本)
+buildscript {
+
+    //定义扩展属性(可选)
+    ext {
+        springBootVersion = "2.1.0.RELEASE"
+    }
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        //和maven中央仓库一样的另一个依赖管理仓库,主要是java
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
 allprojects {
     group = 'com.dashuai.learning'
     version = '1.0.0'
@@ -6,6 +23,8 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
+    apply plugin: 'org.springframework.boot'  //使用springboot插件
+    apply plugin: 'io.spring.dependency-management'  //版本管理插件
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
@@ -16,6 +35,8 @@ subprojects {
     repositories {
         mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        //和maven中央仓库一样的另一个依赖管理仓库,主要是java
+        jcenter()
     }
     dependencies {
         compileOnly 'org.projectlombok:lombok:1.18.8'

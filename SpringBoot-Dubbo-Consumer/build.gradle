@@ -1,5 +1,5 @@
 dependencies {
-    compile project(":SpringBoot-Utils")
+    compile project(":SpringBoot-Support")
     compile(group: 'com.alibaba', name: 'dubbo', version: '2.5.3') {
         exclude(module: 'spring')
         exclude(module: 'slf4j-log4j12')

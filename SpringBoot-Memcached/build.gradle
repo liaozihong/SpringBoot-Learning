@@ -1,5 +1,5 @@
 dependencies {
-    compile project(':SpringBoot-Utils')
+    compile project(':SpringBoot-Support')
     compile group: 'net.spy', name: 'spymemcached', version: '2.12.3'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.4.RELEASE'
 }

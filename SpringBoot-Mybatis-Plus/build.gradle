@@ -1,5 +1,5 @@
 dependencies {
-    compile project(':SpringBoot-Utils')
+    compile project(':SpringBoot-Support')
     compile 'com.baomidou:mybatis-plus-boot-starter:3.0.1'
     //代码生成器
     compile 'com.baomidou:mybatis-plus-generator:3.0.1'

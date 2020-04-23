@@ -1,5 +1,5 @@
 dependencies {
-    compile project(':SpringBoot-Utils')
+    compile project(':SpringBoot-Support')
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.6'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp', version: '2.0.4.RELEASE'
 }

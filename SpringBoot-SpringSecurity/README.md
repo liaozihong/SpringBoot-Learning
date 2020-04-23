@@ -9,9 +9,9 @@ Spring Security 是一个能够为基于 Spring 的企业应用系统提供声�
 #### 路由资源访问认证
 先用一个比较简单的基于角色访问权限的小例子入门  
 
-导入相关jar包,SpringBoot-Utils模块是我常用的一些公共类
+导入相关jar包,SpringBoot-Support模块是我常用的一些公共类
 ```text
-    compile project(':SpringBoot-Utils')
+    compile project(':SpringBoot-Support')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.0.5.RELEASE'
     compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE'

@@ -1,5 +1,5 @@
 dependencies {
-    compile project(":SpringBoot-Utils")
+    compile project(":SpringBoot-Support")
     compile 'net.sf.ehcache:ehcache:2.9.1'
     compile group: 'com.alibaba', name: 'druid', version: '1.1.10'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
