@@ -33,8 +33,8 @@ DROP TABLE IF EXISTS `sys_role_permission`;
 CREATE TABLE `sys_role_permission`  (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
-  INDEX `FKomxrs8a388bknvhjokh440waq`(`permission_id`) USING BTREE,
-  INDEX `FK9q28ewrhntqeipl1t04kh1be7`(`role_id`) USING BTREE
+  INDEX `idx_perm_id`(`permission_id`) USING BTREE,
+  INDEX `idx_role_id`(`role_id`) USING BTREE
 ) ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -44,8 +44,8 @@ DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
   `role_id` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  INDEX `FKgkmyslkrfeyn9ukmolvek8b8f`(`uid`) USING BTREE,
-  INDEX `FKhh52n8vd4ny9ff4x9fb8v65qx`(`role_id`) USING BTREE
+  INDEX `idx_uid`(`uid`) USING BTREE,
+  INDEX `idx_role_id`(`role_id`) USING BTREE
 )  ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -60,7 +60,7 @@ CREATE TABLE `user_info`  (
   `state` tinyint(4) NOT NULL,
   `username` varchar(255)  NULL DEFAULT NULL,
   PRIMARY KEY (`uid`) USING BTREE,
-  UNIQUE INDEX `UK_f2ksd6h8hsjtd57ipfq9myr64`(`username`) USING BTREE
+  UNIQUE INDEX `idx_usname`(`username`) USING BTREE
 )  ENGINE = INNODB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `user_info` (`uid`,`username`,`name`,`password`,`salt`,`state`) VALUES ('1', 'admin', '管理员', 'd3c59d25033dbf980d29554025c23a75', '8d78869f470951332959580424d4bf4f', 0);

@@ -11,8 +11,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.UnsupportedEncodingException;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Login controller
@@ -65,10 +64,9 @@ public class LoginController {
      *
      * @param message the message
      * @return the api result
-     * @throws UnsupportedEncodingException the unsupported encoding exception
      */
     @GetMapping(path = "/unauthorized/{message}")
-    public ApiResult unauthorized(@PathVariable String message) throws UnsupportedEncodingException {
+    public ApiResult unauthorized(@PathVariable String message) {
         return ApiResult.prepare().error(null, 401, message);
     }
 }

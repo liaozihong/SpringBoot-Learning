@@ -481,11 +481,11 @@ public class SwaggerConfig {
 }
 ```
 调用授权api，登录成功，会返回token:   
-![](https://ws1.sinaimg.cn/large/006mOQRagy1fyfnrtqb5kj315u0q5dhx.jpg)    
+![](https://ww1.sinaimg.cn/large/006mOQRagy1fyfnrtqb5kj315u0q5dhx.jpg)    
 拿到返回的token，调用接口，可以看到成功调用：  
-![](https://ws1.sinaimg.cn/large/006mOQRagy1fyfntf2bhuj31aw0n8764.jpg)   
+![](https://ww1.sinaimg.cn/large/006mOQRagy1fyfntf2bhuj31aw0n8764.jpg)   
 去掉token或使用错误的token将会报token认证失败：  
-![](https://ws1.sinaimg.cn/large/006mOQRagy1fyfnuknvrkj310a0lz0u1.jpg)  
+![](https://ww1.sinaimg.cn/large/006mOQRagy1fyfnuknvrkj310a0lz0u1.jpg)  
 
 JWT 弊端，如果使用JWT来着做会话管理，那么注销、改密、续签等问题，你将要慢慢爬坑。
 具体可参考大佬写的一篇文章：http://blog.didispace.com/learn-how-to-use-jwt-xjf/
