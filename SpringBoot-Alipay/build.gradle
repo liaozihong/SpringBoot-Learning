@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':SpringBoot-Utils')
+    compile 'com.alipay.sdk:alipay-sdk-java:3.4.49.ALL'
+}
