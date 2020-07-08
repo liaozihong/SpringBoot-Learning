@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" /><!-- 全局映射器启用缓存 -->
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<!--		<setting name="logImpl" value="STDOUT_LOGGING" />-->
+	</settings>
+<!--	<typeHandlers>-->
+<!--		<package name="com.dashuai.learning.mybatis.freemarker.handler"/>-->
+<!--	</typeHandlers>-->
+	
+</configuration>

@@ -1,0 +1,8 @@
+dependencies {
+    compile project(':SpringBoot-Support')
+    compile 'com.alibaba:druid-spring-boot-starter:1.1.16'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+    compile 'com.baomidou:mybatis-plus-generator:3.1.2'
+    compile 'com.baomidou:mybatis-plus-boot-starter:3.1.2'
+}
