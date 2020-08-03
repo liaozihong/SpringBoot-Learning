@@ -1,6 +1,6 @@
 dependencies {
     compile project(':SpringBoot-Support')
-    compile 'org.apache.rocketmq:rocketmq-client:4.3.0'
+    compile 'org.apache.rocketmq:rocketmq-client:4.7.1'
     compile 'com.alibaba:fastjson:1.2.47'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

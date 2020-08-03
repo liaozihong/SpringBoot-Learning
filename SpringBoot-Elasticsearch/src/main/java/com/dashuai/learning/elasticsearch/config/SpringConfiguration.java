@@ -2,7 +2,7 @@ package com.dashuai.learning.elasticsearch.config;
 
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.xpack.client.PreBuiltXPackTransportClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +33,7 @@ public class SpringConfiguration {
                 .put("cluster.name", "docker-cluster")
                 .put("xpack.security.user", "elastic:changeme")
                 .build())
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("120.79.58.138"), 9300));
+                .addTransportAddress(new TransportAddress(InetAddress.getByName("120.79.58.138"), 9300));
         return client;
     }
 }
