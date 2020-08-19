@@ -43,7 +43,8 @@ rootProject.name = 'springboot'
 //include(':SpringBoot-Builder-Docker')
 //include(':SpringBoot-Test-Starter')
 //include(':SpringBoot-Alibaba-Sentinel')
-include(':SpringBoot-Mybatis-Freemarker')
+//include(':SpringBoot-Mybatis-Freemarker')
+include(':SpringBoot-Gecco-Reptile')
 include(':SpringBoot-Support')
 // spring-boot-starter-webflux模块与web冲突，如果web模块的类不能用，请注释下面的模块
 //include(':SpringBoot-WebFlux')

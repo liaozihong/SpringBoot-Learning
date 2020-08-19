@@ -1,0 +1,4 @@
+dependencies {
+    compile project(':SpringBoot-Support')
+    compile 'com.geccocrawler:gecco:1.3.2'
+}

@@ -1,7 +1,6 @@
 package com.dashuai.learning.ratelimiter.service;
 
 import com.google.common.util.concurrent.RateLimiter;
-import org.springframework.stereotype.Service;
 
 /**
  * Rate limiter service
@@ -11,13 +10,12 @@ import org.springframework.stereotype.Service;
  *
  * @author Liaozihong
  */
-@Service
 public class RateLimiterService {
     private RateLimiter rateLimiter;
 
 
-    public RateLimiterService(double count) {
-        rateLimiter = RateLimiter.create(count);
+    public RateLimiterService(Integer count) {
+        rateLimiter = RateLimiter.create(Double.valueOf(count));
     }
 
     /**
