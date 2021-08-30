@@ -1,5 +1,5 @@
 dependencies {
     compile project(':SpringBoot-Support')
-    compile 'org.springframework.kafka:spring-kafka:2.1.5.RELEASE'
+    compile 'org.springframework.kafka:spring-kafka:2.2.8.RELEASE'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.4.RELEASE'
 }

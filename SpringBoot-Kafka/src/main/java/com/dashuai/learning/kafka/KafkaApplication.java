@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 /**
  * Kafka application
  * <p/>
@@ -24,11 +27,16 @@ public class KafkaApplication {
      */
     public static void main(String[] args) throws InterruptedException {
         ApplicationContext app = SpringApplication.run(KafkaApplication.class, args);
-        while (true) {
-            ProductMsg sender = app.getBean(ProductMsg.class);
-            sender.sendMessage();
-//            sender.sendMessage2();
-            Thread.sleep(200);
+        Executor executor = Executors.newFixedThreadPool(100);
+        for (int i = 0; i < 100000; i++) {
+            executor.execute(()->{
+                ProductMsg sender = app.getBean(ProductMsg.class);
+                try {
+                    sender.sendMessage();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
