@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':SpringBoot-Support')
+    compile 'org.neo4j.driver:neo4j-java-driver:4.3.4'
+    compile('org.springframework.boot:spring-boot-starter-data-neo4j')
+}
